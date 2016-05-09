@@ -68,7 +68,7 @@ function matchFile(cwd, pattern, opts) {
 }
 
 function findFile(cwd, filename) {
-  var fp = cwd ? (cwd + '/' + filename) : filename;
+  var fp = cwd ? (cwd + path.sep + filename) : filename;
   if (fs.existsSync(fp)) {
     return fp;
   }
@@ -77,8 +77,8 @@ function findFile(cwd, filename) {
   var len = segs.length;
 
   while (len--) {
-    cwd = segs.slice(0, len).join('/');
-    fp = cwd + '/' + filename;
+    cwd = segs.slice(0, len).join(path.sep);
+    fp = cwd + path.sep + filename;
     if (fs.existsSync(fp)) {
       return fp;
     }
